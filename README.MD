@@ -5,4 +5,4 @@ This repository contains the raw source code and should be compiled in Android S
 
 Feel free to download.
 
-![Calculator](http://i.imgur.com/bovVDCA.png)
+![Calculator](https://raw.githubusercontent.com/truongtr/androidCalculator/master/thumbnail.png)
