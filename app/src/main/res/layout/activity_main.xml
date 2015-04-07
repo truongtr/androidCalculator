@@ -1,0 +1,237 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#FFFFFF"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginBottom="50dp"
+        android:text="0"
+        android:gravity="right"
+        android:textStyle="bold"
+        android:padding="20dp"
+        android:textSize="28dp"
+        android:background="#517BF0"
+        android:textColor="#ffffff"
+        android:id="@+id/display"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="1"
+        android:textSize="28dp"
+        android:elevation="4dp"
+        android:id="@+id/button1"
+        android:background="#fff0d41c"
+        android:layout_marginTop="261dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="2"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button2"
+        android:background="#fff0d41c"
+        android:layout_marginTop="261dp"
+        android:layout_marginLeft="87dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="3"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button3"
+        android:background="#fff0d41c"
+        android:layout_marginTop="261dp"
+        android:layout_marginLeft="174dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="4"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button4"
+        android:background="#fff0d41c"
+        android:layout_marginTop="174dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="5"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button5"
+        android:background="#fff0d41c"
+        android:layout_marginTop="174dp"
+        android:layout_marginLeft="87dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="6"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button6"
+        android:background="#fff0d41c"
+        android:layout_marginTop="174dp"
+        android:layout_marginLeft="174dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="7"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button7"
+        android:background="#fff0d41c"
+        android:layout_marginTop="87dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="8"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button8"
+        android:background="#fff0d41c"
+        android:layout_marginTop="87dp"
+        android:layout_marginLeft="87dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="9"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button9"
+        android:background="#fff0d41c"
+        android:layout_marginTop="87dp"
+        android:layout_marginLeft="174dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="0"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/button0"
+        android:background="#fff0d41c"
+        android:layout_marginTop="348dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClick" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="C"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/buttonC"
+        android:background="#fff0d41c"
+        android:layout_marginTop="348dp"
+        android:layout_marginLeft="87dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="removeLastDigit" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="="
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/buttonEqual"
+        android:background="#fff0d41c"
+        android:layout_marginTop="348dp"
+        android:layout_marginLeft="174dp"
+        android:layout_alignParentStart="true"
+        android:onClick="enter" />
+
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="+"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/buttonPlus"
+        android:background="#F54061"
+        android:layout_marginTop="348dp"
+        android:layout_marginLeft="271dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClickOperand" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="-"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/buttonMinus"
+        android:background="#F54061"
+        android:layout_marginTop="261dp"
+        android:layout_marginLeft="271dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClickOperand" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="×"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/buttonMultiply"
+        android:background="#F54061"
+        android:layout_marginTop="174dp"
+        android:layout_marginLeft="271dp"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClickOperand" />
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="÷"
+        android:textSize="28dp"
+        android:elevation="2dp"
+        android:id="@+id/buttonDivide"
+        android:background="#F54061"
+        android:layout_marginTop="87dp"
+        android:layout_marginLeft="271dp"
+        android:nestedScrollingEnabled="true"
+        android:onClick="onClickOperand" />
+
+</RelativeLayout>
