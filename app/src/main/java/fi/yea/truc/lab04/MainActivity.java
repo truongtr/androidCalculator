@@ -107,12 +107,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void performOperationPlus(View v){
         TextView myDisplay = (TextView)findViewById(R.id.display);
         int maxOperand = this.operandStack.size();
-        if (maxOperand >1){
-            double result = operandStack.get(maxOperand-2) + operandStack.get(maxOperand-1);
-            operandStack.set(maxOperand-1, result);
+        if (maxOperand >1) {
+            double result = operandStack.get(maxOperand - 2) + operandStack.get(maxOperand - 1);
+            operandStack.set(maxOperand - 1, result);
             NumberFormat formatter = new DecimalFormat("##.###");
-            myDisplay.setText(formatter.format(operandStack.get(maxOperand-1)).toString());
-
+            myDisplay.setText(formatter.format(operandStack.get(maxOperand - 1)).toString());
+        }
     }
 
     public void performOperationMinus(View v){
