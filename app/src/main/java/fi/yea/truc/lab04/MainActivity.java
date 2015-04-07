@@ -21,23 +21,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     List<Double> operandStack = new ArrayList<Double>();
     Double temp = 0.0;
     String operand = "";
-   // TextView myDisplay = (TextView)findViewById(R.id.display);
-  /*  Button b0 = (Button)findViewById(R.id.button0);
-    Button b1 = (Button)findViewById(R.id.button1);
-    Button b2 = (Button)findViewById(R.id.button2);
-    Button b3 = (Button)findViewById(R.id.button3);
-    Button b4 = (Button)findViewById(R.id.button4);
-    Button b5 = (Button)findViewById(R.id.button5);
-    Button b6 = (Button)findViewById(R.id.button6);
-    Button b7 = (Button)findViewById(R.id.button7);
-    Button b8 = (Button)findViewById(R.id.button8);
-    Button b9 = (Button)findViewById(R.id.button9);
-    Button bDel = (Button)findViewById(R.id.buttonC);
-    Button bAdd = (Button)findViewById(R.id.buttonPlus);
-    Button bSub = (Button)findViewById(R.id.buttonMinus);
-    Button bMul = (Button)findViewById(R.id.buttonMultiply);
-    Button bDiv = (Button)findViewById(R.id.buttonDivide);*/
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,64 +52,66 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     public void onClick(View v){
+        this.shouldClearScreen = false;
         Button button = (Button) v;
         String digit = button.getText().toString();
         TextView myDisplay = (TextView)findViewById(R.id.display);
-        if (userIsInTheMiddleOfTypingANumber){
+        if (this.userIsInTheMiddleOfTypingANumber){
             myDisplay.setText(myDisplay.getText() + digit);
         }else{
             myDisplay.setText(digit);
-            userIsInTheMiddleOfTypingANumber = true;
+            this.userIsInTheMiddleOfTypingANumber = true;
         }
+
     }
+
+
     public void onClickOperand(View v){
-        Button button = (Button) v;
-        String myOperand = button.getText().toString();
-        this.operand = myOperand;
-        //this.operand = myOperand;
         TextView myDisplay = (TextView)findViewById(R.id.display);
-        this.temp = Double.parseDouble(myDisplay.getText().toString());
-        this.operandStack.add(this.temp);
+        if(!shouldClearScreen){
+            this.userIsInTheMiddleOfTypingANumber = false;
+            Button button = (Button) v;
+            String myOperand = button.getText().toString();
+            this.operand = myOperand;
+            double temp = Double.parseDouble(myDisplay.getText().toString());
+            this.operandStack.add(temp);
+            // Add to operandStack
+            if (this.operandStack.size()>=0){
+                switch (this.operand){
+                    case "+":
+                        performOperationPlus(v);
 
-        if (userIsInTheMiddleOfTypingANumber){
-           // enter(v);
-        }
-        if(this.operand.contains("+")){
-            performOperationPlus(v);
-            userIsInTheMiddleOfTypingANumber = false;
-        }
-        switch (this.operand){
-            case "+":
-                performOperationPlus(v);
-                userIsInTheMiddleOfTypingANumber = false;
-                break;
-            case "-":
-                performOperationMinus(v);
-                userIsInTheMiddleOfTypingANumber = false;
-                break;
-            case "×":
-                performOperationMultiply(v);
-                userIsInTheMiddleOfTypingANumber = false;
-                break;
-            case "÷":
-                performOperationDivide(v);
-                userIsInTheMiddleOfTypingANumber = false;
-                break;
-            default:
-                break;
+                        break;
+                    case "-":
+                        performOperationMinus(v);
+                        break;
+                    case "×":
+                        performOperationMultiply(v);
+                        break;
+                    case "÷":
+                        performOperationDivide(v);
+                        break;
+                    default:
+                        break;
 
+                }
+
+            }
+        }else{
+            myDisplay.setText("0");
+            this.shouldClearScreen= false;
         }
+
+
     }
     public void performOperationPlus(View v){
         TextView myDisplay = (TextView)findViewById(R.id.display);
         int maxOperand = this.operandStack.size();
-        if (maxOperand >= 2){
-            double result = operandStack.get(maxOperand-1) + operandStack.get(maxOperand-2);
+        if (maxOperand >1){
+            double result = operandStack.get(maxOperand-2) + operandStack.get(maxOperand-1);
             operandStack.set(maxOperand-1, result);
             NumberFormat formatter = new DecimalFormat("##.###");
             myDisplay.setText(formatter.format(operandStack.get(maxOperand-1)).toString());
-            userIsInTheMiddleOfTypingANumber = false;
-        }
 
     }
 
@@ -150,7 +135,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             operandStack.set(maxOperand-1, result);
             NumberFormat formatter = new DecimalFormat("##.###");
             myDisplay.setText(formatter.format(operandStack.get(maxOperand-1)).toString());
-            userIsInTheMiddleOfTypingANumber = false;
+            this.userIsInTheMiddleOfTypingANumber = false;
         }
 
     }
@@ -158,11 +143,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         TextView myDisplay = (TextView)findViewById(R.id.display);
         int maxOperand = this.operandStack.size();
         if (maxOperand >= 2){
-            double result = operandStack.get(maxOperand-2) / operandStack.get(maxOperand-1);
-            operandStack.set(maxOperand-1, result);
-            NumberFormat formatter = new DecimalFormat("##.###");
-            myDisplay.setText(formatter.format(operandStack.get(maxOperand-1)).toString());
-            userIsInTheMiddleOfTypingANumber = false;
+            if(operandStack.get(maxOperand-1)!=0){
+                double result = operandStack.get(maxOperand-2) / operandStack.get(maxOperand-1);
+                operandStack.set(maxOperand-1, result);
+                NumberFormat formatter = new DecimalFormat("##.###");
+                myDisplay.setText(formatter.format(operandStack.get(maxOperand-1)).toString());
+            }else{
+                myDisplay.setText("ERROR");
+                this.shouldClearScreen = true;
+            }
+
+            this.userIsInTheMiddleOfTypingANumber = false;
         }
 
     }
@@ -170,7 +161,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClickResult(View v){
         Button operation = (Button) v;
         String digit = operation.getText().toString();
-        if (userIsInTheMiddleOfTypingANumber){
+        if (this.userIsInTheMiddleOfTypingANumber){
             enter(v);
         }
     }
@@ -178,44 +169,48 @@ public class MainActivity extends Activity implements View.OnClickListener {
         TextView myDisplay = (TextView)findViewById(R.id.display);
         myDisplay.setText("0");
         this.operandStack.clear();
-        userIsInTheMiddleOfTypingANumber = false;
+        this.userIsInTheMiddleOfTypingANumber = false;
+        this.operand="";
+        this.shouldClearScreen= false;
 
     }
     public void enter(View v){
-
         TextView myDisplay = (TextView)findViewById(R.id.display);
-        this.temp = Double.parseDouble(myDisplay.getText().toString());
-        this.operandStack.add(this.temp);
-        // Add to operandStack
+        int maxOperand = this.operandStack.size();
+        if(!shouldClearScreen){
 
-        if (userIsInTheMiddleOfTypingANumber){
-            switch (this.operand){
-                case "+":
-                    performOperationPlus(v);
-                    break;
-                case "-":
-                    performOperationMinus(v);
-                    break;
-                case "×":
-                    performOperationMultiply(v);
-                    break;
-                case "÷":
-                    performOperationDivide(v);
-                    break;
-                default:
-                    break;
+            double temp = Double.parseDouble(myDisplay.getText().toString());
+            this.operandStack.add(temp);
+            // Add to operandStack
+            if (this.operandStack.size()>=0){
+                switch (this.operand){
+                    case "+":
+                        performOperationPlus(v);
+
+                        break;
+                    case "-":
+                        performOperationMinus(v);
+                        break;
+                    case "×":
+                        performOperationMultiply(v);
+                        break;
+                    case "÷":
+                        performOperationDivide(v);
+                        break;
+                    default:
+                        break;
+
+                }
 
             }
-
+            this.operand = "";
+            operandStack.clear();
         }else{
-            userIsInTheMiddleOfTypingANumber = false;
+            myDisplay.setText("0");
+            this.shouldClearScreen= false;
         }
-        this.operand = "";
-        int maxOperand = this.operandStack.size();
-        double temp2 = operandStack.get(maxOperand-1);
-        this.operandStack.clear();
-        this.operandStack.add(temp2);
-        this.shouldClearScreen = true;
+
+            this.userIsInTheMiddleOfTypingANumber = false;
     }
 
     public double getDisplayValue(){
